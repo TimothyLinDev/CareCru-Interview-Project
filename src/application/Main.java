@@ -14,22 +14,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        //Creates holder for database rows returned by DBHelper
         Map<Integer, Library> database = new HashMap<>();
 
-        Library library = new Library();
-
-        Book book = new Book();
-
-        book.setId(1);
-        book.setAuthor("Stendhal");
-        book.setTitle("The red and the black");
-
-        library.setName("Great library");
-        library.addBook(book);
-
-        database.put(1, library);
-
         ObjectMapper objectMapper = new ObjectMapper();
+
+        DatabaseHelper dbh = new DatabaseHelper();
 
         while (true) {
 
@@ -42,12 +32,13 @@ public class Main {
 
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            input.toLowerCase();
 
             if ("quit".equals(input)) {
+                dbh.closeDB();
                 System.out.println("Bye!");
                 break;
             } else if ("list".equals(input)) {
+                dbh.listLibraries(database);
                 System.out.println(objectMapper.writeValueAsString(database));
             } else if ("create".equals(input)) {
 
@@ -60,9 +51,8 @@ public class Main {
 
                 Library inputLibrary = objectMapper.readValue(input, Library.class);
 
-                System.out.println(inputLibrary.getName());
-
-                database.put(database.size() + 1, inputLibrary);
+                System.out.println(inputLibrary.getName() + " Inserted");
+                dbh.insertLibrary(inputLibrary);
  
             } else if ("delete".equals(input)) {
                 System.out.println("ID to delete:");
@@ -70,8 +60,8 @@ public class Main {
                 scanner = new Scanner(System.in);
                 input = scanner.nextLine();
                 int key = Integer.parseInt(input);
-
-                database.remove(key);
+                dbh.deleteLibrary(key);
+                System.out.println("Library Deleted");
 
             } else {
                 System.out.println("unknown command");
