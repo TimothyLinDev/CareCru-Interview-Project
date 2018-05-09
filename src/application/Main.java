@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
+//JSON Arrays containing libraries to test Program
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -39,6 +42,7 @@ public class Main {
 
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
+            input.toLowerCase();
 
             if ("quit".equals(input)) {
                 System.out.println("Bye!");
@@ -57,14 +61,18 @@ public class Main {
                 Library inputLibrary = objectMapper.readValue(input, Library.class);
 
                 System.out.println(inputLibrary.getName());
+
                 database.put(database.size() + 1, inputLibrary);
+ 
             } else if ("delete".equals(input)) {
                 System.out.println("ID to delete:");
 
                 scanner = new Scanner(System.in);
                 input = scanner.nextLine();
+                int key = Integer.parseInt(input);
 
-                database.remove(Integer.parseInt(input));
+                database.remove(key);
+
             } else {
                 System.out.println("unknown command");
             }

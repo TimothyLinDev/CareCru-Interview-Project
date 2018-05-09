@@ -1,0 +1,9 @@
+# ignore jars
+*.jar
+
+#ignore compiled directories
+/application/
+
+#ignore the documents
+*.pdf
+*.txt
