@@ -3,8 +3,10 @@ package application;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         MutablePicoContainer pico = new DefaultPicoContainer();
         pico.addComponent(MainController.class);
@@ -12,11 +14,6 @@ public class Main {
 
         DatabaseHelper dbh = pico.getComponent(DatabaseHelper.class);
         MainController mc = pico.getComponent(MainController.class);
-
-        try {
-            mc.Menu(dbh);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        mc.Menu(dbh);
     }
 }
