@@ -12,6 +12,11 @@ public class Main {
 
         DatabaseHelper dbh = pico.getComponent(DatabaseHelper.class);
         MainController mc = pico.getComponent(MainController.class);
-        mc.Menu(dbh);
+
+        try {
+            mc.Menu(dbh);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
