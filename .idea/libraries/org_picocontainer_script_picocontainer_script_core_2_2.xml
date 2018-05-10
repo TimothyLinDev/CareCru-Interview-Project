@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="org.picocontainer.script:picocontainer-script-core:2.2" type="repository">
+    <properties maven-id="org.picocontainer.script:picocontainer-script-core:2.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/picocontainer/script/picocontainer-script-core/2.2/picocontainer-script-core-2.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/picocontainer/picocontainer/2.11/picocontainer-2.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
