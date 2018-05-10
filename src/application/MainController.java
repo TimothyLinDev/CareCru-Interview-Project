@@ -1,8 +1,6 @@
 package application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.picocontainer.DefaultPicoContainer;
-import org.picocontainer.MutablePicoContainer;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,11 +11,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MainController {
-	
-	public MainController() throws {
-		//Can add Login Logic here
 
-	}
+    public MainController() {
+        //Can add Login Logic here
+
+    }
 
     public void Menu(DatabaseHelper dbh) throws IOException {
 
@@ -62,7 +60,7 @@ public class MainController {
                         System.out.println(lib);
                         Library inputLibrary = objectMapper.readValue(lib, Library.class);
                         dbh.insertLibrary(inputLibrary);
-                    } 
+                    }
 
                 } else if("input".equals(input)){
                     System.out.println("Library (JSON):");
