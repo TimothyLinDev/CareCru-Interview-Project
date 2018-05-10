@@ -55,13 +55,14 @@ public class DatabaseHelper {
 				stmt = c.createStatement();
 
 				String sql = "CREATE TABLE LIBRARIES " +
-				"(LIB_ID INT PRIMARY KEY	NOT NULL," +
-				" NAME 			 TEXT 	NOT NULL)";
+				"(NAME TEXT PRIMARY KEY	NOT NULL," +
+				" LIB_ID 			INT 	NOT NULL)";
 				stmt. executeUpdate(sql);
 
 				sql = "CREATE TABLE LIB_BOOKS_BRIDGE " +
 				"(LIB_ID INT NOT NULL," +
-				" BOOK_ID INT NOT NULL)";
+				" BOOK_ID INT NOT NULL," +
+				" UNIQUE (LIB_ID, BOOK_ID))";
 				stmt.executeUpdate(sql);
 
 				sql = "CREATE TABLE BOOKS " +
@@ -89,10 +90,11 @@ public class DatabaseHelper {
 	    List<Book> listOfBooks = inputLib.getBooks();
 
 	    try {
-	     	ps = c.prepareStatement("INSERT INTO LIBRARIES(LIB_ID, Name) VALUES(?, ?)");
-	     	ps.setInt(1, libID);
-	     	ps.setString(2,inputLib.getName());
+	     	ps = c.prepareStatement("INSERT OR IGNORE INTO LIBRARIES(NAME, LIB_ID) VALUES(?, ?)");
+	     	ps.setString(1, inputLib.getName());
+	     	ps.setInt(2,libID);
 	     	ps.executeUpdate();
+			
 
 	     	for(int i = 0; i <listOfBooks.size(); i++) {
 	     		Book book = new Book();
@@ -105,10 +107,10 @@ public class DatabaseHelper {
 	      		ps2.executeUpdate();
 
 	      		ps3 = c.prepareStatement("INSERT INTO LIB_BOOKS_BRIDGE (LIB_ID, BOOK_ID) VALUES(?, ?)"); 
-	      		ps3.setInt(1, 1);
+	      		ps3.setInt(1, libID);
 	      		ps3.setInt(2, book.getId());
 	      		ps3.executeUpdate();
-
+				
 	      		ps.close();
 	     		ps2.close();
 	     		ps3.close();
@@ -122,8 +124,7 @@ public class DatabaseHelper {
 
 	public void deleteLibrary(int libID){
 		try {
-
-
+			
         	Statement stmt = c.createStatement();
 	        String sql = "DELETE from LIBRARIES where LIB_ID = " + Integer.toString(libID) + ";";
 	        stmt.executeUpdate(sql);

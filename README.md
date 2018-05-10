@@ -3,17 +3,21 @@
 Required Dependencies:
 jackson(core, databind, annotations)
 sqlite jdbc
+picocontainer
 
 Interview Project for CareCru
 
 A Library Management DB that uses an in-memory database that persists after the problem shuts down.
 
+
 Currently finished:
 Database logic( Tested locally with a separate file)
+Program calling database methods
+Using picocontainers
 
 In-progress:
-Dependency Injection implementation with picocontainer
+Dependency Injection & Inversion of Control implementation with picocontainer
 JSON file reads
-Program calling database methods
+Tests
 Better ReadMe
 
