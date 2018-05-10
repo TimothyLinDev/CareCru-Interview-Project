@@ -1,14 +1,8 @@
 package application;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.sql.*;
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper {
