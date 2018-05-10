@@ -4,7 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 
+
+import java.io.File;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -53,31 +57,38 @@ public class MainController {
                 System.out.println(objectMapper.writeValueAsString(database));
             } else if ("create".equals(input)) {
 
-                /*System.out.println("file: JSON file")
-                System.out.println("input: JSON input")
+                System.out.println("file: JSON file");
+                System.out.println("input: JSON input");
                 scanner = new Scanner(System.in);
                 input = scanner.nextLine();
 
                 if("file".equals(input)){
+                    System.out.println("FileName (JSON):");
+                    scanner = new Scanner(System.in);
+                    input = scanner.nextLine();
+                    
+                    BufferedReader br = new BufferedReader(new FileReader(new File(input)));
+                    String lib;
+                    while ((lib = br.readLine()) != null){
+                        System.out.println(lib);
+                        Library inputLibrary = objectMapper.readValue(lib, Library.class);
+                        dbh.insertLibrary(inputLibrary);
+                    } 
 
                 } else if("input".equals(input)){
+                    System.out.println("Library (JSON):");
+                    scanner = new Scanner(System.in);
+                    input = scanner.nextLine();
+
+                    Library inputLibrary = objectMapper.readValue(input, Library.class);
+
+                    System.out.println(inputLibrary.getName() + " Inserted");
+                    dbh.insertLibrary(inputLibrary);
 
                 } else{
-                    System.out.println("unknown command")
-                }*/
+                    System.out.println("unknown command");
+                }
 
-                System.out.println("Library (JSON):");
-
-                scanner = new Scanner(System.in);
-                input = scanner.nextLine();
-
-                System.out.println(input);
-
-                Library inputLibrary = objectMapper.readValue(input, Library.class);
-
-                System.out.println(inputLibrary.getName() + " Inserted");
-                dbh.insertLibrary(inputLibrary);
- 
             } else if ("delete".equals(input)) {
                 System.out.println("ID to delete:");
 
