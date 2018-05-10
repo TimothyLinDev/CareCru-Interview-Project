@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -13,20 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
-
-//JSON Arrays containing libraries to test Program
-
 public class MainController {
 	
-	public MainController() throws IOException{
+	public MainController() throws {
 		//Can add Login Logic here
-        MutablePicoContainer pico = new DefaultPicoContainer();
-        pico.addComponent(DatabaseHelper.class);
-
-        DatabaseHelper dbh = pico.getComponent(DatabaseHelper.class);
-
-        Menu(dbh) ;
 
 	}
 
@@ -66,7 +55,7 @@ public class MainController {
                     System.out.println("FileName (JSON):");
                     scanner = new Scanner(System.in);
                     input = scanner.nextLine();
-                    
+
                     BufferedReader br = new BufferedReader(new FileReader(new File(input)));
                     String lib;
                     while ((lib = br.readLine()) != null){

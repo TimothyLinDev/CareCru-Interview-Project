@@ -27,7 +27,6 @@ public class DatabaseHelper {
 			if(file.exists()){
 				//if it does load it into memory
 				c.createStatement().executeUpdate("restore from libraries.db");
-
 				//Load up last Library ID
 				PreparedStatement ps = c.prepareStatement("SELECT MAX(LIB_ID) FROM LIBRARIES;");
 				ResultSet rs = ps.executeQuery();

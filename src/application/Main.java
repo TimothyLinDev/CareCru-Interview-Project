@@ -8,8 +8,10 @@ public class Main {
 
         MutablePicoContainer pico = new DefaultPicoContainer();
         pico.addComponent(MainController.class);
+        pico.addComponent(DatabaseHelper.class);
 
+        DatabaseHelper dbh = pico.getComponent(DatabaseHelper.class);
         MainController mc = pico.getComponent(MainController.class);
-
+        mc.Menu(dbh);
     }
 }
