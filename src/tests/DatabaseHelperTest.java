@@ -25,6 +25,7 @@ public class DatabaseHelperTest {
 
     @org.junit.Test
     public void insertLibrary() {
+        assertEquals("help", "help");
     }
 
     @org.junit.Test
